@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-3.7.1.js"></script>
+<script type="text/javascript">
+	$(function() {
+		// load("파일명") : 파일을 읽어와서 태그에 삽입시키는 함수
+		$("p.panel").load("txt/html5.txt");
+		
+		$("ul.tab li a").click(function(){
+			$("ul.tab li a").not(this).removeClass("selected");
+			$(this).addClass("selected");
+			
+			$("p.panel").load($(this).attr("href"));
+			// <a>태그 무효화
+			return false;
+		});
+	});
+</script>
+<style type="text/css">
+* {
+	padding: 0; margin: 0;
+}
+#container{
+	width: 500px;
+	margin: 20px auto;
+}
+ul.tab{
+	list-style: none;
+	position: relative;
+	z-index: 100;
+}
+ul.tab li {
+	width: 100px;
+	height: 40px;
+	float: left;
+}
+ul.tab li a{
+	background: url("img/tab.jpg");
+	display: block;
+	color: #222;
+	line-height: 40px;
+	text-align: center;
+	text-decoration: none;
+}
+ul.tab li a.selected{
+	background: url("img/tab_selected.jpg");
+}
+p.panel {
+	border: 1px solid #9fb7d4;
+	position: relative;
+	top: -1px;
+	padding: 10px;
+	margin: 0;
+	clear: both;
+}
+</style>
+</head>
+<body>
+	<div id="container">
+		<ul class="tab">
+			<li><a href="txt/html5.txt" class="selected">HTML5</a></li>
+			<li><a href="txt/jquery.txt">jQuery</a></li>
+			<li><a href="txt/bootstrap.txt">Bootstrap</a></li>
+		</ul>
+		<!-- 내용영역 -->
+		<p class="panel"></p>
+	</div>
+</body>
+</html>
